@@ -1,1 +1,1 @@
-# Palindrome
+This is an algorithm project that determines if a given string is a palindrome. The algorithm ignores any spaces, sybmols, and underscores. The project is implemented using HTML, CSS, and Javascript. 
