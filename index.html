@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset = "utf-8">
+	<meta charset = "utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Palindrome Checker</title>
     <link rel="stylesheet" href="styles.css">
@@ -26,5 +26,40 @@ body {
 	<p id="result"></p>
 </body>
 <script>
+//palindrome checker function
+function palindromeChecker(str) {
+	//strings to hold first and last part of string (will be equal lengths)
+	let firstHalfStr;
+	let secondHalfStr;
+
+	//remove all non word characters from the str and convert all to lower case
+	let modifiedStr = str.replace(/\W|_/g, "");
+	modifiedStr = modifiedStr.toLowerCase();
+
+	//check if length of string is odd or even to determine where to split the string
+	if(modifiedStr.length % 2 === 0) {
+		firstHalfStr = modifiedStr.slice(0, modifiedStr.length / 2);
+		secondHalfStr = modifiedStr.slice(modifiedStr.length / 2);
+	}
+	else {
+		firstHalfStr = modifiedStr.slice(0, Math.floor(modifiedStr.length / 2));
+		secondHalfStr = modifiedStr.slice(Math.floor(modifiedStr.length / 2) + 1);
+	}
+
+	//iterate forward through first half and backward through second half, checking equality
+	for(let i = 0; i < firstHalfStr.length; i++) {
+		if(firstHalfStr[i] !== secondHalfStr[firstHalfStr.length - 1 - i]) {
+			document.getElementById("result").innerHTML = "This is not a palindrome.";
+			return false;
+		}
+	}
+
+	//if for loop completed fully, then it is a palindrome
+	document.getElementById("result").innerHTML = "This is a palindrome!";
+	return true;
+}
+
+//onclick function
+document.getElementById("submitbutton").onclick = function() {palindromeChecker(document.getElementById("textinput").value)};
 </script>
 </html>
